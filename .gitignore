@@ -14,6 +14,7 @@ fig_genie*
 fig_comparison*
 fig_sim_*
 fig_paper*
+*.DS_Store
 
 # Suffix
 #*.root

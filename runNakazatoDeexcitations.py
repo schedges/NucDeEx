@@ -8,6 +8,7 @@ nakazato_Ex_16F_MeV = [0.25, 0.30, 0.34, 3.76, 4.51, 4.52, 5.66, 5.78, 6.71, 7.0
 
 codePath = "bin/simulation_nakazato_16O_CC"
 nps = 10000
+os.environ["NUCDEEX_ROOT"] = os.getcwd()
 
 for nrg in nakazato_Ex_16F_MeV:
     cmd = f"{codePath} {nrg:.3f} {nps}"
