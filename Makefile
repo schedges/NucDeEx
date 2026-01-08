@@ -1,4 +1,4 @@
-PROGRAMS = plot_decay cout_input simulation simulation_16O
+PROGRAMS = plot_decay cout_input simulation simulation_16O simulation_nakazato_16O_CC
 PROGRAMS += genie
 
 ifndef ROOTSYS
