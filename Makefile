@@ -13,7 +13,7 @@ ARFLAGS=
 
 ## for cern root
 CXXFLAGS        += $(shell root-config --cflags)
-LDFLAGS         += $(shell root-config --libs) -lEG -lGeom #-lEve 
+LDFLAGS 		+= $(shell root-config --ldflags --glibs) -lEG -lGeom #-lEve 
 # DO NOT link lEve. -lEG and -lGeom are necessary.
 ROOTVERSION = $(shell root-config --version)
 ROOT5=$(findstring 5.,$(ROOTVERSION))
@@ -66,8 +66,8 @@ $(EXEOBJDIR)/%.o: main/%.cc
 lib:  $(OBJS)
 	ar $(ARFLAGS) -rv $(LIBNAME) $^
 
-dylib:  $(OBJS)
-	$(CXX) -shared -o $(LIBNAME:.a=.so) $^
+dylib: $(OBJS)
+	$(CXX) -dynamiclib -o $(LIBDIR)/libNucDeEx.dylib $^ $(LDFLAGS)
 
 clean: 
 	rm -rf $(OBJDIR)/*.o $(BINDIR)/* $(LIBDIR)/*

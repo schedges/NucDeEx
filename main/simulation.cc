@@ -249,7 +249,7 @@ int main(int argc, char* argv[]){
     // prepare detail fig
     if(flag_fig){
       TArrow* lXY[size], *lYZ[size], *lXZ[size];
-      int color[size]={0};
+      std::vector<int> color(size, 0);
       for(int i=0;i<size;i++){
         lXY[i] = new TArrow(0,0,PX[i],PY[i],0.01,"|>");
         lYZ[i] = new TArrow(0,0,PY[i],PZ[i],0.01,"|>");
