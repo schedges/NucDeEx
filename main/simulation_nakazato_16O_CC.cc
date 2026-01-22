@@ -71,7 +71,7 @@ int main(int argc, char* argv[]){
   //Prepare output file
   os.str("");
   os << "sim_out/16O/";
-  os << "Ex_" << std::fixed << std::setprecision(3) << Ex;
+  os << "Ex_" << std::setw(6) << std::setfill('0') << std::fixed << std::setprecision(3) << Ex;
   os << "_ldmodel" << ldmodel;
   os << "_parity" << (parity_optmodall ? 1 : 0);
   os << ".root";
@@ -132,6 +132,10 @@ int main(int argc, char* argv[]){
   while(eventID<numofevent){
     
     // --- DO SIMULATION --- //
+    const int Z_r = 9;
+    const int N_r = 7;
+    const int Z_t = 8;
+    const int N_t = 8;
     NucDeExEventInfo result = deex->DoDeex(Z_t,N_t,Z_r,N_r,Ex,Pinit);
 
     // --- Storing --- //
