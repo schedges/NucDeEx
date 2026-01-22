@@ -113,7 +113,7 @@ NucDeExEventInfo NucDeExDeexcitationTALYS::DoDeex(const int Zt, const int Nt,
       int Ex_daughter_point;
       DaughterExPoint(&Ex_daughter,&Ex_daughter_point);
 
-      // --- Get mass using ROOT libraries
+      // --- Get mass using ROOT libraries 
       if(decay_mode<=2){ // obtained from TDatabasePDG
         mass_particle = NucDeEx::Utils::fTDatabasePDG->GetParticle(NucDeEx::PDG_particle[decay_mode])->Mass()*1e3;// GeV2MeV
       }else{ // obtained from TGeoElementRN
@@ -143,9 +143,13 @@ NucDeExEventInfo NucDeExDeexcitationTALYS::DoDeex(const int Zt, const int Nt,
     }
 
     // --- Get separation E and Qvalue 
-    S = nuc_target->S[decay_mode];
+    //S = nuc_target->S[decay_mode];
+    S = (mass_daughter + mass_particle) - mass_target;
     Qvalue = Ex_target - S - Ex_daughter;
-    if(Qvalue<0) Qvalue=0;
+    if (Qvalue<0) {
+      continue;
+    }
+    //if(Qvalue<0) Qvalue=0;
     if(NucDeEx::Utils::fVerbose>1){
       std::cout << "S = " << S << std::endl;
       std::cout << "Qvalue = " << Qvalue << std::endl;
