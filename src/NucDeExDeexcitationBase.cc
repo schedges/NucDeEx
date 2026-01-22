@@ -190,7 +190,9 @@ void NucDeExDeexcitationBase::AddGSNucleus(const int Z,const int N, const TVecto
 double NucDeExDeexcitationBase::ElementMassInMeV(const int A, const int Z)
 /////////////////////////////////////////////
 {
-  return ElementMassInMeV( NucDeEx::Utils::fTGeoElementTable->GetElementRN(A,Z) );
+  constexpr double m_e = 0.51099895069; // MeV
+
+  return ElementMassInMeV( NucDeEx::Utils::fTGeoElementTable->GetElementRN(A,Z) ) - Z*m_e;
 }
 
 /////////////////////////////////////////////
